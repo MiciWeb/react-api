@@ -1,0 +1,8 @@
+[
+  {"category": "Boxing", "price": "$49.99", "stocked": true, "name": "Venum"},
+  {"category": "Boxing", "price": "$29.99", "stocked": true, "name": "Everlast"},
+  {"category": "Boxing", "price": "$19.99", "stocked": false, "name": "Adidas"},
+  {"category": "Apple", "price": "$299.99", "stocked": true, "name": "iPad Air"},
+  {"category": "Apple", "price": "$399.99", "stocked": false, "name": "iPhone X"},
+  {"category": "Apple", "price": "$1199.99", "stocked": true, "name": "Macbook"}
+]
