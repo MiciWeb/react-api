@@ -27,7 +27,7 @@ class ProductTable extends React.Component {
     render() {
         return (
             <div>
-                {console.log(props.children)}
+                Iphone and apple
             </div>
         )
     }
