@@ -6,24 +6,24 @@ import api from "./components/api.json";
 class ProductCategoryRow extends React.Component {
     render() {
         return (
-                <tr>
-                    <th colSpan="2">
-                        {this.props.category}
-                    </th>
-                </tr>
+            <tr>
+                <th colSpan="2">
+                    {this.props.category}
+                </th>
+            </tr>
         )
     }
 }
 
 class ProductRow extends React.Component {
     render() {
-        const name = this.props.product.stocked? this.props.product.name: <span style={{color: 'red'}}>{this.props.product.name}</span>
+        const name = this.props.product.stocked ? this.props.product.name : <span style={{ color: 'red' }}>{this.props.product.name}</span>
         const price = this.props.product.price
         return (
-                <tr>
-                    <td>{name}</td>
-                    <td>{price}</td>
-                </tr>
+            <tr>
+                <td>{name}</td>
+                <td>{price}</td>
+            </tr>
         )
     }
 }
@@ -31,17 +31,23 @@ class ProductRow extends React.Component {
 class ProductTable extends React.Component {
     render() {
         const rows = []
+        let lastCategory = null
+
         this.props.products.forEach(product => {
+            if (product.category !== lastCategory) {
+                rows.push(
+                    <ProductCategoryRow
+                        category={product.category}
+                        key={product.category} />
+                );
+            }
             rows.push(
-                <ProductCategoryRow 
-                category={product.category}
-                key={product.category} />
-                )
-            rows.push(
-                <ProductRow 
-                product={product}
-                key={product.name} />
+                <ProductRow
+                    product={product}
+                    key={product.name} />
             )
+            lastCategory = product.category
+            console.log(product.category)
         })
         return (
             <div>
@@ -77,12 +83,25 @@ class SearchBar extends React.Component {
     }
 }
 
+class Legend extends React.Component {
+    render() {
+        return (
+            <small><br />
+                <i>
+                    <span style={{ color: 'Red' }}>Red</span> mean out of stock
+                </i>
+            </small>
+        )
+    }
+}
+
 class Table extends React.Component {
     render() {
         return (
             <div>
-                 <SearchBar />
-                 <ProductTable products = {this.props.products} />
+                <SearchBar />
+                <ProductTable products={this.props.products} />
+                <Legend />
             </div>
         )
     }
