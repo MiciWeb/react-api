@@ -3,6 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import api from "./components/api.json";
 
+class Legend extends React.Component {
+    render() {
+        return (
+            <small><br />
+                <i>
+                    <span style={{ color: 'Red' }}>Red</span> mean out of stock
+                </i>
+            </small>
+        )
+    }
+}
+
 class ProductCategoryRow extends React.Component {
     render() {
         return (
@@ -83,24 +95,27 @@ class SearchBar extends React.Component {
     }
 }
 
-class Legend extends React.Component {
-    render() {
-        return (
-            <small><br />
-                <i>
-                    <span style={{ color: 'Red' }}>Red</span> mean out of stock
-                </i>
-            </small>
-        )
-    }
-}
-
 class Table extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            filterText: "",
+            inStockOnly: false
+        }
+    }
+
     render() {
         return (
             <div>
-                <SearchBar />
-                <ProductTable products={this.props.products} />
+                <SearchBar
+                    filterText={this.state.filterText}
+                    inStockOnly={this.state.inStockOnly}
+                />
+                <ProductTable
+                    products={this.props.products}
+                    filterText={this.state.filterText}
+                    inStockOnly={this.state.inStockOnly}
+                />
                 <Legend />
             </div>
         )
