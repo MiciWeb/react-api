@@ -65,6 +65,7 @@ class ProductTable extends React.Component {
                         key={product.category} />
                 );
             }
+            console.log()
 
             rows.push(
                 <ProductRow
@@ -168,6 +169,7 @@ class Table extends React.Component {
                     />
                 </div>
                 <div>
+                    <Legend/>
                 </div>
             </div>
 
