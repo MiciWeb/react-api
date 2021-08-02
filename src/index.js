@@ -49,12 +49,15 @@ class ProductTable extends React.Component {
         let lastCategory = null
 
         this.props.products.forEach(product => {
-            if (product.name.indexOf(filterText) === -1) {
+
+            if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
                 return
             }
+
             if (inStockOnly && !product.stocked) {
                 return
             }
+
             if (product.category !== lastCategory) {
                 rows.push(
                     <ProductCategoryRow
@@ -62,6 +65,7 @@ class ProductTable extends React.Component {
                         key={product.category} />
                 );
             }
+
             rows.push(
                 <ProductRow
                     product={product}
@@ -104,21 +108,21 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-                <form>
+            <form>
+                <input
+                    type="text"
+                    placeholder="search"
+                    value={this.props.filterText}
+                    onChange={this.handleFilterTextChange} />
+                <p>
                     <input
-                        type="search"
-                        placeholder="search"
-                        value={this.props.filterText}
-                        onChange={this.props.handleFilterTextChange} />
-                    <p>
-                        <input
-                            type="checkbox"
-                            checked={this.props.inStockOnly}
-                            onChange={this.props.handleInStockChange} />
-                        {" "}
+                        type="checkbox"
+                        checked={this.props.inStockOnly}
+                        onChange={this.handleInStockChange} />
+                    {" "}
                          Only show products in stock
                     </p>
-                </form>
+            </form>
         )
     }
 }
@@ -149,20 +153,24 @@ class Table extends React.Component {
     render() {
         return (
             <div>
-                <h2>Product Api with <span style={{color:'#61DAFB'}}>React</span></h2>
-                <SearchBar
-                    filterText={this.state.filterText}
-                    inStockOnly={this.state.inStockOnly}
-                    onFilterTextChange={this.handleFilterTextChange}
-                    onInStockChange={this.handleInStockChange}
-                />
-                <ProductTable
-                    products={this.props.products}
-                    filterText={this.state.filterText}
-                    inStockOnly={this.state.inStockOnly}
-                />
-                <Legend />
+                <div className="table">
+                    <h2>Data fetch with <span style={{ color: '#61DAFB' }}>React</span></h2>
+                    <SearchBar
+                        filterText={this.state.filterText}
+                        inStockOnly={this.state.inStockOnly}
+                        onFilterTextChange={this.handleFilterTextChange}
+                        onInStockChange={this.handleInStockChange}
+                    />
+                    <ProductTable
+                        products={this.props.products}
+                        filterText={this.state.filterText}
+                        inStockOnly={this.state.inStockOnly}
+                    />
+                </div>
+                <div>
+                </div>
             </div>
+
         )
     }
 }
