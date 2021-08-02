@@ -95,16 +95,15 @@ class SearchBar extends React.Component {
     }
 
     handleFilterTextChange(e) {
-        this.props.handleFilterTextChange(e.target.value)
+        this.props.onFilterTextChange(e.target.value)
     }
 
     handleInStockChange(e) {
-        this.props.handleInStockChange(e.target.checked)
+        this.props.onInStockChange(e.target.checked)
     }
 
     render() {
         return (
-            <div>
                 <form>
                     <input
                         type="search"
@@ -120,7 +119,6 @@ class SearchBar extends React.Component {
                          Only show products in stock
                     </p>
                 </form>
-            </div>
         )
     }
 }
@@ -151,11 +149,12 @@ class Table extends React.Component {
     render() {
         return (
             <div>
+                <h2>Product Api with <span style={{color:'#61DAFB'}}>React</span></h2>
                 <SearchBar
                     filterText={this.state.filterText}
                     inStockOnly={this.state.inStockOnly}
-                    handleFilterTextChange={this.handleFilterTextChange}
-                    handleInStockChange={this.handleInStockChange}
+                    onFilterTextChange={this.handleFilterTextChange}
+                    onInStockChange={this.handleInStockChange}
                 />
                 <ProductTable
                     products={this.props.products}

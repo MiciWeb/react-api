@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: wheat;
+  background-color: #333333;
+  color: #CCCCCC;
 }
 
 code {
@@ -14,5 +15,24 @@ code {
 }
 
 #root{
-  margin: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
+
+input[type=search]{
+    border-radius: 10px;
+    border: 1px solid;
+    padding: 3px;
+}
+
+p{
+  font-size: 12px;
+}
+
+td, th {
+  padding: 10px;
+  border-bottom: 2px solid #61DAFB;
+  text-align: center;
+  }
